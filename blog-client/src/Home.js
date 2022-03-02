@@ -7,9 +7,14 @@ const Home = () => {
         {title: 'My new website', body: 'lorem ipsum dolor sit amet', author: 'danut', id: 2},
         {title: 'My new website', body: 'lorem ipsum dolor sit amet', author: 'catalin', id: 3}
     ])
+
+    const handleDelete = (id) => {
+        const updatedArticles = articles.filter(item => item.id !== id);
+        setArticles(updatedArticles);
+    }
     return (
         <div className="home">
-           <ArticlesList articles={articles}/>
+           <ArticlesList articles={articles} handleDelete={handleDelete}/>
         </div>
     )
 }
