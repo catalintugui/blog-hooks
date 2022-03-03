@@ -1,20 +1,23 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import ArticlesList from './ArticlesList'
 
 const Home = () => {
-    const [articles, setArticles] = useState([
-        {title: 'My new website', body: 'lorem ipsum dolor sit amet', author: 'catalin', id: 1},
-        {title: 'My new website', body: 'lorem ipsum dolor sit amet', author: 'danut', id: 2},
-        {title: 'My new website', body: 'lorem ipsum dolor sit amet', author: 'catalin', id: 3}
-    ])
+    const [articles, setArticles] = useState(null)
 
     const handleDelete = (id) => {
         const updatedArticles = articles.filter(item => item.id !== id);
         setArticles(updatedArticles);
     }
+
+    useEffect(() => {
+        fetch('http://localhost:8800/articles')
+        .then(response => response.json())
+        .then(data => setArticles(data))
+    }, [])
+
     return (
         <div className="home">
-           <ArticlesList articles={articles} handleDelete={handleDelete}/>
+           {articles && <ArticlesList articles={articles} handleDelete={handleDelete}/>}
         </div>
     )
 }
