@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 
 const Create = () => {
     const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
+    const [body, setBody] = useState('');
     const [author, setAuthor] = useState('catalin');
     const [isLoading, setIsLoading] = useState(false);
     const history = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const article = { title, content, author};
+        const article = { title, body, author};
 
         setIsLoading(true);
 
@@ -40,8 +40,8 @@ const Create = () => {
                 <label>Article content</label>
                 <textarea
                     required
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
+                    value={body}
+                    onChange={(e) => setBody(e.target.value)}
                 ></textarea>
                 <label>Article author:</label>
                 <select
